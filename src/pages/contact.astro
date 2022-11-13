@@ -1,5 +1,10 @@
 ---
+import ContactForm from "../components/ContactForm";
 import MainLayout from "../layouts/mainLayout.astro";
 ---
 
-<MainLayout>Contact Page</MainLayout>
+<MainLayout>
+  <div class="w-full h-full p-8">
+    <ContactForm client:load />
+  </div>
+</MainLayout>

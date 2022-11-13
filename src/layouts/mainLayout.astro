@@ -10,18 +10,21 @@ const pathName = new URL(Astro.request.url).pathname;
 
 <html
   lang="en"
-  class="p-2 sm:p-5 bg-gradient-to-r from-primary to-secondary rounded-lg text-base-content"
+  class="p-2 sm:p-5 bg-gradient-to-r from-primary to-secondary text-base-content h-full min-h-screen box-border"
   data-theme="dark"
 >
-  <div class="bg-base-100 rounded-lg">
-    <div>
-      <MainHead title={title} description={description} />
-      <Nav client:load pathName={pathName}>
-        <div class="max-w-6xl mx-auto w-full">
-          <slot />
-        </div>
-      </Nav>
-    </div>
-  </div>
-  <Footer />
+  <body class="flex flex-col min-h-full">
+    <MainHead title={title} description={description} />
+    <Nav
+      client:load
+      pathName={pathName}
+      className="drawer h-auto rounded-tl-lg rounded-tr-lg overflow-x-hidden bg-base-100 flex-grow"
+    >
+      <div class="max-w-6xl mx-auto w-full h-full">
+        <slot />
+      </div>
+    </Nav>
+    <!-- </div> -->
+    <Footer />
+  </body>
 </html>

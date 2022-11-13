@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { frontmatter, url } = Astro.props.project;
-const color = frontmatter.color || "primary-content";
+const color = "base-content";
 ---
 
 <div
@@ -17,8 +17,8 @@ const color = frontmatter.color || "primary-content";
     class="titleCard h-4/5"
     style={`background-image:url(${frontmatter.img})`}
   >
-    <h1 class={`title text-${frontmatter.color} text-3xl text-center`}>
-      <div class="bg-base-100/80 p-4 rounded backdrop-opacity-40 max-w-[80%]">
+    <h1 class={`title text-${color} text-3xl text-center`}>
+      <div class="bg-base-300/90 p-4 rounded backdrop-opacity-40 max-w-[80%]">
         <span class="opacity-100">{frontmatter.title}</span>
       </div>
     </h1>

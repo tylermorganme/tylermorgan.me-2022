@@ -1,12 +1,53 @@
 import React from "react";
 import { useForm, ValidationError } from "@formspree/react";
 
+const inputClasses =
+  "peer w-full border px-3 py-2 rounded-lg focus:outline-none focus:border-accent1 focus:ring-4 focus:ring-accent1 placeholder-transparent border-none bg-base-content text-base-300";
+
+const StyledLabel = (props) => {
+  const { children, ...rest } = props;
+
+  return (
+    <label
+      className={`
+        absolute w-full transition-all top-1 left-3 text-base-content
+        text-2xl
+        peer-placeholder-shown:top-12
+        peer-placeholder-shown:text-secondary
+        peer-placeholder-shown:text-xl
+        peer-focus:text-base-content
+        peer-focus:top-1
+        peer-focus:left-3
+        peer-focus:text-2xl
+        peer-autofill:top-1
+        peer-autofill:left-3
+        peer-autofill:text-2xl
+      `}
+      {...rest}
+    >
+      {children}
+    </label>
+  );
+};
+
+const SuccessContent = () => {
+  return (
+    <div className="w-full h-full flex text-4xl flex-col gap-8 justify-center items-center text-center">
+      <p className="max-w-3xl grow-0">
+        Thank you for reaching out!
+      </p>
+      <p className="max-w-3xl grow-0">
+        I'll get back to you as soon as I can.
+      </p>
+    </div>
+  );
+};
+
 const ContactForm = (props) => {
   const [state, handleSubmit] = useForm("mleverzv");
+
   if (state.succeeded) {
-    return (
-      <p>Thank you for reaching out! I'll get back to you as soon as I can.</p>
-    );
+    return SuccessContent;
   }
   return (
     <form
@@ -19,28 +60,10 @@ const ContactForm = (props) => {
           id="email"
           type="email"
           name="email"
-          className="peer w-full border px-3 py-2 rounded-lg focus:outline-none focus:border-accent1 focus:ring-4 focus:ring-accent1 placeholder-transparent border-none text-dark"
+          className={inputClasses}
           placeholder="Email"
         />
-        <label
-          htmlFor="email"
-          className="
-            absolute w-full transition-all top-1 left-3 text-dark
-            text-2xl
-            peer-placeholder-shown:top-12
-            peer-placeholder-shown:text-gray-500
-            peer-placeholder-shown:text-xl
-            peer-focus:text-dark
-            peer-focus:top-1
-            peer-focus:left-3
-            peer-focus:text-2xl
-            peer-autofill:top-1
-            peer-autofill:left-3
-            peer-autofill:text-2xl
-          "
-        >
-          Email
-        </label>
+        <StyledLabel htmlFor="email">Email</StyledLabel>
         <ValidationError prefix="Email" field="email" errors={state.errors} />
       </div>
       <div className="relative pt-10 w-full">
@@ -48,63 +71,31 @@ const ContactForm = (props) => {
           id="name"
           type="text"
           name="name"
-          className="peer w-full border px-3 py-2 rounded-lg focus:outline-none focus:border-accent1 focus:ring-4 focus:ring-accent1 placeholder-transparent border-none text-dark"
+          className={inputClasses}
           placeholder="Name"
         />
-        <label
-          htmlFor="name"
-          className="
-            absolute w-full transition-all top-1 left-3 text-dark
-            text-2xl
-            peer-placeholder-shown:top-12
-            peer-placeholder-shown:text-gray-500
-            peer-placeholder-shown:text-xl
-            peer-focus:text-dark
-            peer-focus:top-1
-            peer-focus:left-3
-            peer-focus:text-2xl
-            peer-autofill:top-1
-            peer-autofill:left-3
-            peer-autofill:text-2xl
-            "
-        >
-          Name
-        </label>
+        <StyledLabel htmlFor="name">Name</StyledLabel>
         <ValidationError prefix="Name" field="name" errors={state.errors} />
       </div>
       <div className="relative pt-10 w-full">
         <textarea
           id="message"
           name="message"
-          className="peer w-full border px-3 py-2 rounded-lg focus:outline-none focus:border-accent1 focus:ring-4 focus:ring-accent1 placeholder-transparent border-none text-dark"
+          className={inputClasses}
           placeholder="How can I help?"
         />
-        <label
-          htmlFor="message"
-          className="
-            absolute w-full transition-all top-1 left-3 text-dark
-            text-2xl
-            peer-placeholder-shown:top-12
-            peer-placeholder-shown:text-gray-500
-            peer-placeholder-shown:text-xl
-            peer-focus:text-dark
-            peer-focus:top-1
-            peer-focus:left-3
-            peer-focus:text-2xl
-            peer-autofill:top-1
-            peer-autofill:left-3
-            peer-autofill:text-2xl
-            "
-        >
-          How can I help?
-        </label>
+        <StyledLabel htmlFor="message">How can I help?</StyledLabel>
         <ValidationError
           prefix="Message"
           field="message"
           errors={state.errors}
         />
       </div>
-      <button type="submit" disabled={state.submitting} className="w-fit bg-accent2 rounded-lg px-4 py-1.5 uppercase relative ml-auto mr-0">
+      <button
+        type="submit"
+        disabled={state.submitting}
+        className="w-fit btn rounded-lg px-4 py-1.5 uppercase relative ml-auto mr-0 text-xl mt-8 bg-primary text-primary-content border-0 ring-2 ring-offset-2 ring-base-content ring-offset-base-100"
+      >
         Send
       </button>
     </form>

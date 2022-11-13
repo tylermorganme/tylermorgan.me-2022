@@ -48,7 +48,7 @@ const Vent = () => {
 
 const TopMenu = ({ items, pathName }) => {
   return (
-    <div className="flex-none hidden lg:block">
+    <div className="flex-none hidden lg:block ">
       <ul className="menu menu-horizontal">
         {items.map((item) => {
           return (
@@ -114,7 +114,7 @@ const DisplayModeToggle = ({ toggleDisplayMode }) => {
   );
 };
 
-export default function Nav({ children, pathName }) {
+export default function Nav({ children, pathName, className }) {
   const [isDarkMode, setIsDarkMode] = React.useState(true);
   const toggleDarkMode = () => {
     console.log("toggle");
@@ -132,7 +132,7 @@ export default function Nav({ children, pathName }) {
 
   return (
     // <nav class="drawer drawer-end">
-    <nav className="drawer h-auto bg-base-100 rounded-tl-lg rounded-tr-lg overflow-x-hidden">
+    <nav className={className}>
       <input
         id="my-drawer-3"
         type="checkbox"
