@@ -1,0 +1,27 @@
+---
+import MainHead from "../components/MainHead.astro";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.jsx";
+
+const { title, description } = Astro.props;
+
+const pathName = new URL(Astro.request.url).pathname;
+---
+
+<html
+  lang="en"
+  class="p-2 sm:p-5 bg-gradient-to-r from-primary to-secondary rounded-lg text-base-content"
+  data-theme="dark"
+>
+  <div class="bg-base-100 rounded-lg">
+    <div>
+      <MainHead title={title} description={description} />
+      <Nav client:load pathName={pathName}>
+        <div class="max-w-6xl mx-auto w-full">
+          <slot />
+        </div>
+      </Nav>
+    </div>
+  </div>
+  <Footer />
+</html>

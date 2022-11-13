@@ -1,0 +1,55 @@
+---
+const currentYear = new Date().getFullYear();
+import { Image } from "@astrojs/image/components";
+---
+
+<!-- <footer>
+	&copy; {currentYear} Tyler Morgan</footer> -->
+<footer
+  class="footer items-center p-4 bg-neutral text-neutral-content rounded-bl-lg rounded-br-lg flex-wrap flex flex-row justify-around md:justify-between"
+>
+  <div class="items-center text-xl text-center">
+    <p>Copyright &copy 2022 - Tyler Morgan</p>
+  </div>
+  <div class="flex flex-row min-w-fit gap-8">
+    <a
+      href="https://www.github.com/tylermorganme"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src="/github_icon.png"
+        class="aspect-square w-12 invert"
+        alt="github link"
+        width={100}
+        aspectRatio={1}
+      />
+    </a>
+    <a
+      href="https://twitter.com/TylerMorganMe"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src="/linkedin_icon.png"
+        class="aspect-square w-12"
+        alt="linkedin link"
+        width={100}
+        aspectRatio={1}
+      />
+    </a>
+    <a
+      href="https://www.linkedin.com/in/tylermorganme/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src="/twitter_icon.png"
+        class="aspect-square w-12"
+        alt="twitter link"
+        width={100}
+        aspectRatio={1}
+      />
+    </a>
+  </div>
+</footer>

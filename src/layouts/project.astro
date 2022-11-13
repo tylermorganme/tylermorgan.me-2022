@@ -1,0 +1,30 @@
+---
+import type { Project } from "../types";
+import MainLayout from "./mainLayout.astro";
+
+interface Props {
+  content: Project;
+}
+
+const { content } = Astro.props;
+---
+
+<MainLayout>
+  <header
+    class={`flex bg-no-repeat relative w-full box-border bg-cover text-white flex-col items-center justify-center min-h-[25vw] p-32 bg-center`}
+    style={`background-image:url(${content.img})`}
+  >
+    <h1 class={(content.isImageDark ? "" : "title-dark ") + "title box-border"}>
+      {content.title}
+    </h1>
+  </header>
+  <div class="leadIn">
+    <div class="wrapper">
+      {content.tags.map((t) => <span class="tag">{t}</span>)}
+      <h3 class="tagline">{content.description}</h3>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="content"><slot /></div>
+  </div>
+</MainLayout>

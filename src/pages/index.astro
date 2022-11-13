@@ -1,0 +1,84 @@
+---
+// Component Imports
+import PortfolioPreview from "../components/PortfolioPreview.astro";
+import type { Project } from "../types";
+import MainLayout from "../layouts/mainLayout.astro";
+import { Image } from "@astrojs/image/components";
+
+// Data Fetching: List all Markdown posts in the repo.
+const projects = await Astro.glob<Project>("./project/**/*.md");
+const featuredProjects = projects
+  .filter((i) => i.frontmatter.featured)
+  .sort((a, b) => {
+    return a - b;
+  });
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<MainLayout>
+  <header class="hero">
+    <div class="hero bg-base-100 py-4">
+      <div class="hero-content flex-col lg:flex-row p-8 pb-0">
+        <Image
+          src="/profilePicture.jpg"
+          class="max-w-sm shadow-2xl w-full rounded-full ring-info ring ring-offset-4 ring-offset-base-100"
+          alt="Profile picture of Tyler"
+          width={800}
+          aspectRatio="1:1"
+        />
+        <div class="md:pl-4">
+          <h1
+            class="flex flex-row justify-center lg:justify-start text-5xl font-bold py-6 lg:py-0"
+          >
+            <span class="text-center lg:text-left"
+              >I Write Code to <span class="gradient-text">Build Solutions</span
+              >
+            </span>
+          </h1>
+          <div class="flex flex-col gap-3 py-3 text-xl">
+            <p>I’m an entrepreneur that loves to build fun stuff.</p>
+            <p>
+              These days I mostly spend my time working with mining companies to
+              improve their business processes through the development and
+              implementation of new technologies.
+            </p>
+            <p>
+              If you’re looking for someone to help you with an interesting
+              problem or project, you’ve almost certainly come to the right
+              place. Even if I don’t have the exact skills you need, I’m great
+              at putting together multidisciplinary teams or at least pointing
+              you towards the right people. I hope we can find a fun project to
+              work on together.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <a
+    href="/contact"
+    class="btn btn-primary gradient-text text-5xl p-4 h-auto flex border-4 rounded-full mx-6"
+  >
+    <button class="gradient-text">Reach Out</button>
+  </a>
+  <main class="wrapper">
+    <div class="p-8">
+      <h3 class="text-6xl font-extrabold">Selected Works</h3>
+      <div class="flex flex-row flex-wrap justify-around py-6">
+        {
+          featuredProjects.map((project) => {
+            return <PortfolioPreview project={project} />;
+          })
+        }
+      </div>
+      <a
+        href="/projects/"
+        class="btn btn-primary gradient-text text-5xl p-4 h-auto mx-auto flex border-4 rounded-full"
+      >
+        <button class="gradient-text"> View All</button>
+      </a>
+    </div>
+  </main>
+</MainLayout>
