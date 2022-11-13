@@ -7,11 +7,11 @@ interface Props {
 }
 
 const { frontmatter, url } = Astro.props.project;
-const color = frontmatter.color | "primary-content";
+const color = frontmatter.color || "primary-content";
 ---
 
 <div
-  class="card text-primary-content relative mb-8 h-[400px] w-full max-w-[500px] ring-2 ring-primary-content ring-offset-4 ring-offset-base-100 bg-base-100"
+  class="card text-primary-content relative mb-8 h-[400px] w-full max-w-[500px] ring-2 ring-base-content ring-offset-4 ring-offset-base-100 bg-base-100"
 >
   <div
     class="titleCard h-4/5"

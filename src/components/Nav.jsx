@@ -1,5 +1,10 @@
 import React from "react";
 
+const colorModes = {
+  LIGHT: "acid",
+  DARK: "dark",
+};
+
 const menuItems = [
   {
     title: "home",
@@ -9,10 +14,10 @@ const menuItems = [
     title: "portfolio",
     href: "/projects",
   },
-  {
-    title: "about",
-    href: "/about",
-  },
+  // {
+  //   title: "about",
+  //   href: "/about",
+  // },
   {
     title: "contact",
     href: "/contact",
@@ -119,9 +124,9 @@ export default function Nav({ children, pathName }) {
   React.useEffect(() => {
     const html = document.querySelector("html");
     if (isDarkMode) {
-      html.setAttribute("data-theme", "dark");
+      html.setAttribute("data-theme", colorModes.DARK);
     } else {
-      html.setAttribute("data-theme", "light");
+      html.setAttribute("data-theme", colorModes.LIGHT);
     }
   }, [isDarkMode]);
 
@@ -137,11 +142,15 @@ export default function Nav({ children, pathName }) {
         <div className="w-full navbar bg-base-300">
           <div className="w-full max-w-6xl mx-auto">
             <div className="flex-1 px-2 mx-2 items-end text-3xl">
-              <span className="gradient-text">TylerMorgan</span>.me
+              <a href="/">
+                <span className="gradient-text">TylerMorgan</span>.me
+              </a>
             </div>
 
             <TopMenu items={menuItems} pathName={pathName} />
-            <DisplayModeToggle toggleDisplayMode={toggleDarkMode}/>
+            <div className="px-5">
+              <DisplayModeToggle toggleDisplayMode={toggleDarkMode} />
+            </div>
             <Vent />
           </div>
         </div>

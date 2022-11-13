@@ -5,8 +5,9 @@ module.exports = {
     themes: [
       "light",
       "dark",
-      "retro",
-      "emerald",
+      "acid"
+      // "retro",
+      // "emerald",
     //   {
     //     listCustom: {
     //       primary: "#bc942d",
