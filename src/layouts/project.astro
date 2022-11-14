@@ -1,30 +1,84 @@
 ---
 import type { Project } from "../types";
 import MainLayout from "./mainLayout.astro";
+// import { Image } from "@astrojs/image/components";
+import { getImage } from "@astrojs/image";
 
 interface Props {
   content: Project;
 }
 
 const { content } = Astro.props;
+
+// Need to add these to an element on the page to have them dynamically loaded.
+// Apparently tailwind isn't smart enough to import them hased on JS in astro.
+const tagColors = ["success", "secondary", "info"];
+
+const getTagColorByTagAndIndex = (tag, index) => {
+  return tagColors[index % tagColors.length];
+};
+const { src } = await getImage({
+  src: content.img,
+  width: 1280 * 2,
+  aspectRatio: 1,
+  fit: "cover",
+  position: "left top",
+});
+const { page } = Astro.props;
 ---
 
 <MainLayout>
-  <header
-    class={`flex bg-no-repeat relative w-full box-border bg-cover text-white flex-col items-center justify-center min-h-[25vw] p-32 bg-center`}
-    style={`background-image:url(${content.img})`}
-  >
-    <h1 class={(content.isImageDark ? "" : "title-dark ") + "title box-border"}>
+  <div class="flex flex-row flex-wrap px-2 md:px-5">
+    <div
+      id="needed-to-import-tailwind-colors"
+      class={`h-0 w-0 bg-success bg-secondary bg-info}`}
+    >
+      {page?.url.prev ? <a href={page?.url.prev}>Previous</a> : null}
+      {page?.url.next ? <a href={page?.url.next}>Next</a> : null}
+    </div>
+    <h1 class={"text-5xl pt-8 font-medium"}>
       {content.title}
     </h1>
-  </header>
-  <div class="leadIn">
-    <div class="wrapper">
-      {content.tags.map((t) => <span class="tag">{t}</span>)}
-      <h3 class="tagline">{content.description}</h3>
+    <header
+      class={`flex bg-no-repeat relative w-full box-border bg-cover flex-col items-center justify-center min-h-[33vh] mt-8 max-h-[500px] rounded-tr-lg rounded-tl-lg bg-accent`}
+      style={`background-image:url(${src})`}
+    >
+      <!-- <Image
+    class={`block relative box-border flex-col items-center justify-center mt-8 rounded-tr-lg rounded-tl-lg max-h-[50vh] w-full h-auto`}
+    style={`background-image:url(./${content.img})`}
+    src={content.img}
+    alt={`An an image representing ${content.title}`}
+    width={1280*2}
+    aspectRatio={16/9}
+    fit='cover'
+    position="centre"
+    format='webp'
+
+  /> -->
+    </header>
+    <h3
+      class="tagline w-full text-2xl pl-5 text-neutral bg-neutral-content p-2 rounded-bl-lg rounded-br-lg border-t-2 border-primary border-solid"
+    >
+      {content.description}
+    </h3>
+    <div
+      class="text-2xl uppercase text-primary-content flex flex-row flex-wrap gap-5 p-5"
+    >
+      {
+        content.tags.map((tag, index) => (
+          <div
+            class={`py-1 px-3 rounded-full block bg-${getTagColorByTagAndIndex(
+              tag,
+              index
+            )} text-${getTagColorByTagAndIndex(tag, index)}-content`}
+          >
+            {tag}
+          </div>
+        ))
+      }
     </div>
-  </div>
-  <div class="wrapper">
-    <div class="content"><slot /></div>
+    <div class="wrapper">
+      <div class="content pb-8 pt-2 text-lg flex flex-col gap-5"><slot /></div>
+    </div>
   </div>
 </MainLayout>

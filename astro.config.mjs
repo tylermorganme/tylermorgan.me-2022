@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 import solidJs from "@astrojs/solid-js";
@@ -12,9 +12,17 @@ import react from "@astrojs/react";
 // https://astro.build/config
 import image from "@astrojs/image";
 
+import { astroImageTools } from "astro-imagetools";
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [solidJs(), tailwind(), react(), image({
-    serviceEntryPoint: '@astrojs/image/sharp'
-  })]
+  integrations: [
+    solidJs(),
+    tailwind(),
+    react(),
+    image({
+      serviceEntryPoint: "@astrojs/image/sharp",
+    }),
+    astroImageTools,
+  ],
 });

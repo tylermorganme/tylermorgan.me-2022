@@ -117,7 +117,6 @@ const DisplayModeToggle = ({ toggleDisplayMode }) => {
 export default function Nav({ children, pathName, className }) {
   const [isDarkMode, setIsDarkMode] = React.useState(true);
   const toggleDarkMode = () => {
-    console.log("toggle");
     setIsDarkMode(!isDarkMode);
   };
 

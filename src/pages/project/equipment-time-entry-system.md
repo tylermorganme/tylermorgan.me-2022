@@ -12,4 +12,4 @@ tags:
   - Accounting
 layout: ../../layouts/project.astro
 ---
-This was a project with a multi-national coal mining company. They were halfway through the implementation of a new company-wide, internally developed, equipment time usage software and needed help getting the project back on track. I am primarily working with their site operations and engineering staff to provide their IT team with the data they need to produce the time entry system.
+This was a project with a multi-national coal mining company. They were halfway through the implementation of a new company-wide, internally developed, piece of software that would allow site personnel to indicate when and how they were using their equipment. They needed help getting the project back on track. I am primarily working with their site operations and engineering staff to provide their IT team with the data they need to produce the time entry system.

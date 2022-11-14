@@ -3,7 +3,7 @@ title: Copper Mine Machine Learning
 img: ./correlationMatrix.png
 client: Copper Mining Company
 startDate: 2018
-description: Cuttingh edge machine learning applied to mine operation data
+description: Cutting edge machine learning applied to mine operation data
 featured: false
 color: "primary"
 tags:
