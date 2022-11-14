@@ -2,12 +2,12 @@
 import PortfolioPreview from "../components/PortfolioPreview.astro";
 import type { Project } from "../types";
 import MainLayout from "../layouts/mainLayout.astro";
-const projects = await Astro.glob<Project>("./project/**/*.md")
+const projects = await Astro.glob<Project>("./project/**/*.md");
 ---
 
 <MainLayout>
   <div class="wrapper">
-    <h1 class="text-5xl p-8 pb-8">All Projects</h1>
+    <h1 class="p-8 pb-0 text-6xl font-extrabold">All Projects</h1>
     <div class="p-8 w-full flex flex-row flex-wrap gap-8 justify-around">
       {projects.map((project) => <PortfolioPreview project={project} />)}
     </div>

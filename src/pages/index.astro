@@ -9,9 +9,6 @@ import { Image } from "@astrojs/image/components";
 const projects = await Astro.glob<Project>("./project/**/*.md");
 const featuredProjects = projects
   .filter((i) => i.frontmatter.featured)
-  .sort((a, b) => {
-    return a - b;
-  });
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
